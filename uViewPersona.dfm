@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 245
-  ClientWidth = 613
+  ClientHeight = 189
+  ClientWidth = 609
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,8 +12,8 @@ object Form1: TForm1
   Font.Style = []
   TextHeight = 15
   object edNombre: TLabeledEdit
-    Left = 88
-    Top = 72
+    Left = 32
+    Top = 32
     Width = 121
     Height = 23
     EditLabel.Width = 44
@@ -23,8 +23,8 @@ object Form1: TForm1
     Text = ''
   end
   object edDocumento: TLabeledEdit
-    Left = 264
-    Top = 128
+    Left = 208
+    Top = 88
     Width = 145
     Height = 23
     EditLabel.Width = 63
@@ -34,8 +34,8 @@ object Form1: TForm1
     Text = ''
   end
   object Button1: TButton
-    Left = 456
-    Top = 151
+    Left = 400
+    Top = 111
     Width = 121
     Height = 25
     Caption = 'Cargar'
@@ -43,8 +43,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object cmbTipo: TComboBox
-    Left = 264
-    Top = 72
+    Left = 208
+    Top = 32
     Width = 145
     Height = 23
     ItemIndex = 0
@@ -55,8 +55,8 @@ object Form1: TForm1
       'Juridica')
   end
   object edPais: TLabeledEdit
-    Left = 88
-    Top = 184
+    Left = 32
+    Top = 144
     Width = 121
     Height = 23
     EditLabel.Width = 21
@@ -66,8 +66,8 @@ object Form1: TForm1
     Text = ''
   end
   object edTipoDoc: TLabeledEdit
-    Left = 88
-    Top = 128
+    Left = 32
+    Top = 88
     Width = 121
     Height = 23
     EditLabel.Width = 89
@@ -77,8 +77,8 @@ object Form1: TForm1
     Text = ''
   end
   object edAnio: TLabeledEdit
-    Left = 264
-    Top = 176
+    Left = 208
+    Top = 136
     Width = 145
     Height = 23
     EditLabel.Width = 25
@@ -88,8 +88,8 @@ object Form1: TForm1
     Text = ''
   end
   object btCrear: TButton
-    Left = 456
-    Top = 120
+    Left = 400
+    Top = 80
     Width = 121
     Height = 25
     Caption = 'Crear'
