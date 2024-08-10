@@ -19,14 +19,14 @@ uses
       edTipoDoc: TLabeledEdit;
       edAnio: TLabeledEdit;
     btCrear: TButton;
-      procedure Button1Click(Sender: TObject);
+    cmbPersonas: TComboBox;
       function TipoDocToStr(Tipo: TTiposDoc): string;
     procedure btCrearClick(Sender: TObject);
+    procedure cmbPersonasChange(Sender: TObject);
     private
       { Private declarations }
-      FPersonaNat: IPersona;
-      FPersonaJuridica: IPersona;
-      FPersonaJuridica1: IPersona;
+      FPersona: IPersona;
+      APersonas: Array of IPersona;
     public
       { Public declarations }
   end;
@@ -36,51 +36,54 @@ var
 
 implementation
 
+uses
+  uPersonaWrapper;
+
 
 {$R *.dfm}
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.cmbPersonasChange(Sender: TObject);
+var
+  Wrapper: TPersonaWrapper;
+  Persona: IPersona;
 begin
-  case cmbTipo.ItemIndex of
-    0:
-      begin
-        edPais.Text := FPersonaNat.Pais;
-        edNombre.Text := FPersonaNat.nombre;
-        edTipoDoc.Text := TipoDocToStr(FPersonaNat.TipoDocumento);
-        edDocumento.Text := FPersonaNat.Documento.ToString;
-      end;
-    1:
-      begin
-        edPais.Text := FPersonaJuridica.Pais;
-        edNombre.Text := FPersonaJuridica.nombre;
-        edTipoDoc.Text := TipoDocToStr(FPersonaJuridica.TipoDocumento);
-        edDocumento.Text := FPersonaJuridica.Documento.ToString;
-      end;
+  if cmbPersonas.ItemIndex > -1 then
+  begin
+    Wrapper := TPersonaWrapper(cmbPersonas.Items.Objects[cmbPersonas.ItemIndex]);
+    if Assigned(Wrapper) then
+    begin
+      Persona := Wrapper.Persona;
+      edPais.Text := Persona.Pais;
+      edNombre.Text := Persona.nombre;
+      edTipoDoc.Text := TipoDocToStr(Persona.TipoDocumento);
+      edDocumento.Text := Persona.Documento.ToString;
+    end;
   end;
-
 end;
 
 procedure TForm1.btCrearClick(Sender: TObject);
 begin
-  FPersonaNat := TNatural.Create;
-  FPersonaJuridica := TJuridicaSingleton.GetInstance;
-  FPersonaJuridica1 := TJuridicaSingleton.GetInstance;
+  case cmbTipo.ItemIndex of
+    0:
+      begin
+        FPersona := TNaturalSingleton.GetInstance;
+      end;
+    1:
+      begin
+        FPersona := TJuridicaSingleton.GetInstance;
+      end;
+  else
+    raise Exception.Create('Seleccione un tipo');
+  end;
 
+  FPersona.Documento(StrToFloat(edDocumento.Text))
+          .Nombre(edNombre.Text)
+          .Pais(edPais.Text)
+          .TipoDocumento(TTiposDoc.CC);
 
-  FPersonaNat.documento(80749963)
-             .Pais('Colombia')  //Como funcion
-             .Nombre('Juan')
-             .TipoDocumento(CC);
+  cmbPersonas.AddItem(FPersona.Nombre,TPersonaWrapper.Create(FPersona));
+  cmbPersonas.ItemIndex := Pred(cmbPersonas.Items.Count);
 
-  FPersonaJuridica.documento(123456)
-                  .Pais('Italia')
-                  .Nombre('Empresa')
-                  .TipoDocumento(NIT);
-
-  FPersonaJuridica1.documento(900786543)
-                  .Pais('Chile')
-                  .Nombre('FPersonaJuridica1')
-                  .TipoDocumento(TTiposDoc.RUT);
 end;
 
 function TForm1.TipoDocToStr(Tipo: TTiposDoc): string;

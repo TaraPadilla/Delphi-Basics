@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 189
-  ClientWidth = 609
+  ClientHeight = 194
+  ClientWidth = 603
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -36,27 +36,24 @@ object Form1: TForm1
   object Button1: TButton
     Left = 400
     Top = 111
-    Width = 121
+    Width = 145
     Height = 25
     Caption = 'Cargar'
     TabOrder = 2
-    OnClick = Button1Click
   end
   object cmbTipo: TComboBox
     Left = 208
     Top = 32
     Width = 145
     Height = 23
-    ItemIndex = 0
     TabOrder = 3
-    Text = 'Natural'
     Items.Strings = (
       'Natural'
       'Juridica')
   end
   object edPais: TLabeledEdit
     Left = 32
-    Top = 144
+    Top = 136
     Width = 121
     Height = 23
     EditLabel.Width = 21
@@ -90,10 +87,18 @@ object Form1: TForm1
   object btCrear: TButton
     Left = 400
     Top = 80
-    Width = 121
+    Width = 145
     Height = 25
     Caption = 'Crear'
     TabOrder = 7
     OnClick = btCrearClick
+  end
+  object cmbPersonas: TComboBox
+    Left = 400
+    Top = 32
+    Width = 145
+    Height = 23
+    TabOrder = 8
+    OnChange = cmbPersonasChange
   end
 end

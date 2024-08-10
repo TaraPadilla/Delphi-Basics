@@ -6,7 +6,8 @@ uses
   uIPersona in 'uIPersona.pas',
   uNatural in 'uNatural.pas',
   uJuridica in 'uJuridica.pas',
-  uSingleton in 'uSingleton.pas';
+  uSingleton in 'uSingleton.pas',
+  uPersonaWrapper in 'uPersonaWrapper.pas';
 
 {$R *.res}
 
